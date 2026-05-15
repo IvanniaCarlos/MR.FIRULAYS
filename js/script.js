@@ -2,16 +2,18 @@ import {
     signInWithPopup, 
     GoogleAuthProvider, 
     createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword 
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail 
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     // REFERENCIAS
     const loginModal = document.getElementById("loginModal");
     const regModal = document.getElementById("registerModal");
+    const toLoginLink = document.getElementById("toLogin");
+    const forgotPasswordLink = document.querySelector(".forgot-password"); 
     const provider = new GoogleAuthProvider();
 
-    // --- FUNCIÓN PARA VER/OCULTAR CONTRASEÑA ---
     const setupEye = (iconId, inputId) => {
         const icon = document.getElementById(iconId);
         const input = document.getElementById(inputId);
@@ -19,20 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.onclick = () => {
                 const isPassword = input.type === "password";
                 input.type = isPassword ? "text" : "password";
-                // Cambia el icono: si está tachado lo quita y viceversa
                 icon.classList.toggle("fa-eye");
                 icon.classList.toggle("fa-eye-slash");
             };
         }
     };
 
-    // Activamos los ojos para Login y Registro
     setupEye("togglePassword", "password");
     setupEye("toggleRegPassword", "regPassword");
 
-    // --- ABRIR Y CERRAR MODALES ---
     document.getElementById("openLogin").onclick = () => { loginModal.style.display = "flex"; };
     document.getElementById("openRegisterHero2").onclick = () => { regModal.style.display = "flex"; };
+
+    if (toLoginLink) {
+        toLoginLink.onclick = (e) => {
+            e.preventDefault(); 
+            regModal.style.display = "none";    
+            loginModal.style.display = "flex";  
+        };
+    }
 
     document.querySelectorAll('.close-modal').forEach(btn => {
         btn.onclick = () => {
@@ -41,12 +48,38 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    // --- BOTÓN DE GOOGLE (Para que funcione siempre) ---
+    if (forgotPasswordLink) {
+        forgotPasswordLink.onclick = async (e) => {
+            e.preventDefault();
+            
+            // Capturamos el correo que el usuario escribió en el login
+            const emailInput = loginModal.querySelector('input[type="email"]');
+            const email = emailInput.value.trim();
+
+            if (!email) {
+                alert("Por favor, ingresa tu correo electrónico en el formulario para enviarte el enlace de recuperación.");
+                emailInput.focus();
+                return;
+            }
+
+            try {
+                await sendPasswordResetEmail(window.auth, email);
+                alert("¡Correo enviado! Revisa tu bandeja de entrada o spam para restablecer tu contraseña.");
+            } catch (error) {
+                console.error("Error al enviar correo:", error);
+                if (error.code === 'auth/user-not-found') {
+                    alert("Este correo no está registrado en MR. Firulays.");
+                } else {
+                    alert("Hubo un error al intentar enviar el correo: " + error.message);
+                }
+            }
+        };
+    }
+
     const btnGoogle = document.getElementById("btnGoogle");
     if (btnGoogle) {
         btnGoogle.onclick = async () => {
             try {
-                // Usamos window.auth que se inicializó en el index.htm
                 await signInWithPopup(window.auth, provider);
                 window.location.href = "principal.html";
             } catch (error) {
@@ -58,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // --- REGISTRO MANUAL ---
     const registerForm = document.getElementById("registerForm");
     if (registerForm) {
         registerForm.onsubmit = async (e) => {
@@ -76,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // --- LOGIN MANUAL ---
     const loginForm = document.getElementById("loginForm");
     if (loginForm) {
         loginForm.onsubmit = async (e) => {

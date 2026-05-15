@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Citas - MR. Firulays</title>
+    <title>Panel Principal - MR. Firulays</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/panel.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/principal.css">
 </head>
-<body>
+<body class="panel-body">
 
-    <nav class="main-nav">
-        <div class="nav-container">
+    <header class="panel-header">
+        <nav class="navbar-panel">
             <div class="logo">
                 <i class="fas fa-paw logo-icon"></i>
                 <div class="logo-text">
@@ -20,62 +20,150 @@
                 </div>
             </div>
 
-            <ul class="nav-menu">
-                <li class="active"><a href="principal.html"><i class="far fa-calendar-alt"></i> MIS CITAS</a></li>
-                <li><a href="mascotas.html"><i class="fas fa-dog"></i> MIS MASCOTAS</a></li>
-                <li><a href="pagos.html"><i class="fas fa-credit-card"></i> PAGOS</a></li>
-                <li><a href="reclamos.html"><i class="far fa-comment-dots"></i> RECLAMOS/QUEJA</a></li>
+            <ul class="panel-tabs">
+                <li class="tab-item active"><a href="#"><i class="fas fa-calendar-alt"></i> MIS CITAS</a></li>
+                <li class="tab-item"><a href="#"><i class="fas fa-paw"></i> MIS MASCOTAS</a></li>
+                <li class="tab-item"><a href="#"><i class="fas fa-credit-card"></i> PAGOS</a></li>
+                <li class="tab-item"><a href="#"><i class="fas fa-comment-alt"></i> RECLAMOS/QUEJA</a></li>
             </ul>
 
-            <div class="user-profile">
-                <!-- El contenedor de la foto se llenará vía JS -->
-                <div id="userPhotoContainer" class="user-photo"></div>
-                <span id="userNameDisplay"></span> 
-            </div>
-        </div>
-    </nav>
-
-    <main class="dashboard-wrapper">
-        <header class="welcome-header">
-            <div class="welcome-info">
-                <div class="icon-calendar-circle">
-                    <i class="far fa-calendar-alt"></i>
+            <div class="user-profile-menu">
+                <div id="userAvatar" class="avatar-circle">
+                    <i class="fas fa-user"></i>
                 </div>
-                <!-- Este h1 recibirá el nombre automático -->
-                <h1 id="welcomeMessage"></h1>
+                <span id="userNameTop" class="user-name-text">Cargando...</span>
+                <button id="btnLogout" class="btn-small-logout" title="Cerrar sesión">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
             </div>
-            <button class="btn-agendar-pro">
+        </nav>
+    </header>
+
+    <main class="panel-content-wrapper">
+        <section class="welcome-container">
+            <div class="welcome-banner">
+                <i class="fas fa-calendar-check banner-icon"></i>
+                <h2 id="welcomeMessage">Bienvenido al panel de citas...</h2>
+            </div>
+            <button class="btn-add-appointment">
                 <i class="fas fa-plus"></i> Agendar nueva cita
             </button>
-        </header>
+        </section>
 
-        <section class="citas-section">
-            <h2 class="section-title">Próximas citas</h2>
-            <div id="citasContainer" class="citas-grid">
-                <!-- Se mantiene vacío hasta que el usuario agregue datos -->
-                <div class="no-citas">
-                    <p>Aún no tienes citas programadas. ¡Agenda una arriba!</p>
+        <section class="appointments-section">
+            <h3 class="section-title">Próximas citas</h3>
+            
+            <div class="appointments-grid">
+                <div class="appointment-card">
+                    <div class="card-top-info">
+                        <span>15/05/2026</span>
+                        <span>10:00 AM</span>
+                    </div>
+                    <div class="card-main-content">
+                        <div class="pet-photo-placeholder">
+                            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=150" alt="Luna">
+                        </div>
+                        <div class="pet-details">
+                            <h4>LUNA</h4>
+                            <p class="med-reason">Chequeo General</p>
+                            <p class="doc-assigned">Veterinaria: Dra. Carmen Soto</p>
+                            <span class="status-badge">Estado: Confirmada</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view-details">Ver detalles</button>
+                        <button class="btn-reprogram">Reprogramar</button>
+                    </div>
+                </div>
+
+                <div class="appointment-card">
+                    <div class="card-top-info">
+                        <span>15/05/2026</span>
+                        <span>10:00 AM</span>
+                    </div>
+                    <div class="card-main-content">
+                        <div class="pet-photo-placeholder">
+                            <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?w=150" alt="Ana">
+                        </div>
+                        <div class="pet-details">
+                            <h4>ANA</h4>
+                            <p class="med-reason">Cálculos renales</p>
+                            <p class="doc-assigned">Veterinaria: Sofia Gomez</p>
+                            <span class="status-badge">Estado: Confirmada</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view-details">Ver detalles</button>
+                        <button class="btn-reprogram">Reprogramar</button>
+                    </div>
+                </div>
+
+                <div class="appointment-card">
+                    <div class="card-top-info">
+                        <span>15/05/2026</span>
+                        <span>01:00 PM</span>
+                    </div>
+                    <div class="card-main-content">
+                        <div class="pet-photo-placeholder">
+                            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=150" alt="Don Perro">
+                        </div>
+                        <div class="pet-details">
+                            <h4>DON PERRO</h4>
+                            <p class="med-reason">Vacuna triple felina</p>
+                            <p class="doc-assigned">Veterinario: Alejandro Perez</p>
+                            <span class="status-badge">Estado: Confirmada</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view-details">Ver detalles</button>
+                        <button class="btn-reprogram">Reprogramar</button>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-left">
-                <span>Búscanos en nuestras redes:</span>
-                <a href="#"><img src="https://img.icons8.com/color/48/instagram-new.png" alt="IG"> Instagram</a>
-                <a href="#"><img src="https://img.icons8.com/color/48/facebook-new.png" alt="FB"> Facebook</a>
-            </div>
-            <div class="footer-right">
-                <span>Mándanos un mensaje:</span>
-                <a href="#"><img src="https://img.icons8.com/color/48/whatsapp.png" alt="WA"> WhatsApp</a>
-                <span>Correo:</span>
-                <a href="mailto:Mstr.Firulays@gmail.com"><i class="fas fa-envelope"></i> Mstr.Firulays@gmail.com</a>
-            </div>
+    <footer class="panel-footer">
+        <div class="footer-segment">
+            <span>Búscanos en nuestras redes:</span>
+            <a href="https://www.instagram.com/mrfirulaysxs?igsh=MXFhOHdtZjV3cTB6Zw==" target="_blank" class="footer-link">
+                <i class="fab fa-instagram footer-icon-ig"></i> Instagram
+            </a>
+            <span class="footer-link disabled-link">
+                <i class="fab fa-facebook-f footer-icon-fb"></i> Facebook
+            </span>
+        </div>
+        <div class="footer-segment">
+            <span>Mándanos un mensaje:</span>
+            <a href="#" id="whatsappLink" target="_blank" class="footer-link">
+                <i class="fab fa-whatsapp footer-icon-wa"></i> WhatsApp
+            </a>
+        </div>
+        <div class="footer-segment">
+            <span>Correo:</span>
+            <a href="mailto:mrfirulaysxs@gmail.com" class="footer-link">
+                <i class="far fa-envelope footer-icon-mail"></i> mrfirulaysxs@gmail.com
+            </a>
         </div>
     </footer>
 
-    <script type="module" src="js/principal.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCm LdcegKDBdJPw_OV4aQIQ3TBhli7nzQ",
+            authDomain: "veterinaria-mr-firulays.firebaseapp.com",
+            projectId: "veterinaria-mr-firulays",
+            storageBucket: "veterinaria-mr-firulays.firebasestorage.app",
+            messagingSenderId: "913958724869",
+            appId: "1:913958724869:web:9349306cfa0d444e55436c"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        window.auth = auth;
+    </script>
+    <script type="module" src="js/panel.js"></script>
 </body>
 </html>

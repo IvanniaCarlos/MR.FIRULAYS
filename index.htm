@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MR. Firulays - Clínica Veterinaria</title>
-    <!-- Fuentes -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -23,9 +21,9 @@
             
             <div class="nav-right">
                 <ul class="nav-links">
-                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="sobrenosotros.html" class="nav-link-item">Sobre nosotros</a></li>
                     <li><a href="#">Staff</a></li>
-                    <li><a href="#">Servicios</a></li>
+                    <li><a href="servicios.html" class=nav-link-item">Servicios</a></li>
                     <li><a href="#">Consejos/Comunidad</a></li>
                 </ul>
                 <button class="btn-login" id="openLogin">
@@ -42,7 +40,7 @@
                 <p class="hero-p">Cuidamos a tu mascota<br>como parte de nuestra familia <i class="far fa-heart"></i></p>
                 
                 <div class="hero-buttons">
-                    <button class="btn-primary" id="openRegisterHero">Regístrate en MR. Firulays</button>
+                    <div class="info-pill-blue">Regístrate en MR. Firulays</div>
                     <button class="btn-secondary" id="openRegisterHero2">Crear mi cuenta <i class="fas fa-arrow-right"></i></button>
                 </div>
 
@@ -122,8 +120,8 @@
                 <button type="submit" class="btn-submit">Crear cuenta</button>
             </form>
 
-            <div class="bottom-text" style="text-align: center; margin-top: 15px; font-size: 14px;">
-                ¿Ya tienes una cuenta? <a href="#" id="toLogin" style="color: #0057C2; font-weight: 700; text-decoration: none;">Iniciar sesión</a>
+            <div class="bottom-text">
+                ¿Ya tienes una cuenta? <a href="#" id="toLogin">Iniciar sesión</a>
             </div>
         </div>
     </div>
@@ -143,8 +141,6 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    
-    // Solo compartimos el objeto auth
     window.auth = auth;
 </script>
 <script type="module" src="js/script.js"></script>
