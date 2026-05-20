@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     userAvatar.innerHTML = `<i class="fas fa-user"></i>`;
                 }
             } else {
-                window.location.href = "index.htm";
+                window.location.href = "index.html";
             }
         });
     }
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = "index.htm";
                 } catch (error) {
                     console.error("Error al cerrar sesión:", error);
-                    window.location.href = "index.htm";
+                    window.location.href = "index.html";
                 }
             }
         };

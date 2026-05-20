@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         forgotPasswordLink.onclick = async (e) => {
             e.preventDefault();
             
-            // Capturamos el correo que el usuario escribió en el login
             const emailInput = loginModal.querySelector('input[type="email"]');
             const email = emailInput.value.trim();
 
