@@ -1,15 +1,44 @@
-* {
+/* ==========================================
+   1. BLOQUEO TOTAL DE BARRAS (TODOS LOS DISPOSITIVOS)
+   ========================================== */
+html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
     font-family: 'Poppins', sans-serif;
     background-color: #ffffff;
+    
+    /* Desactiva visualmente las barras en Firefox y Edge/IE */
+    scrollbar-width: none !important; 
+    -ms-overflow-style: none !important; 
+}
+
+/* Oculta la barra en Chrome, Safari, Opera y Navegadores Móviles (iOS / Android) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+}
+
+/* Aplicar box-sizing a absolutamente todo */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Evitar desbordamiento lateral */
+body {
     overflow-x: hidden;
 }
 
+
+/* ==========================================
+   2. NAVBAR
+   ========================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -87,6 +116,10 @@ body {
     background-color: #0057C2;
 }
 
+
+/* ==========================================
+   3. HERO SECTION
+   ========================================== */
 .hero-wrapper {
     width: 100%;
     min-height: 88vh; 
@@ -209,6 +242,10 @@ body {
     object-fit: contain;
 }
 
+
+/* ==========================================
+   4. MODAL / LOGIN
+   ========================================== */
 .modal-overlay {
     display: none; 
     position: fixed;
@@ -267,11 +304,6 @@ input:focus {
     color: #003366;
 }
 
-input::-ms-reveal,
-input::-ms-clear {
-    display: none;
-}
-
 @keyframes slideDown {
     from { transform: translateY(-50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
@@ -316,13 +348,56 @@ input::-ms-clear {
     font-weight: 700;
 }
 
-.bottom-text a:hover {
-    color: #003366;
-    text-decoration: underline;
+
+.main-footer {
+    background-color: #f8fbfd; 
+    padding: 40px 20px;
+    border-top: 2px solid #eef2f6;
+    margin-top: 50px;
 }
+
+.footer-container {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: flex-start;
+    flex-wrap: wrap; 
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.footer-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+}
+
+.footer-label {
+    font-weight: 600;
+    color: #0b284e; 
+    font-size: 16px;
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 20px; 
+}
+
+.footer-social-icons a, .footer-link {
+    text-decoration: none;
+    color: #4a5568;
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    transition: color 0.3s ease;
+}
+
+
 
 @media (max-width: 900px) {
     .hero { flex-direction: column; text-align: center; }
     .hero-image { justify-content: center; margin-top: 50px; }
     .hero-buttons { align-items: center; }
+    .nav-right { gap: 20px; }
+    .nav-links { display: none; } 
 }
