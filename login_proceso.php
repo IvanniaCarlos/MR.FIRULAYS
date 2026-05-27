@@ -16,7 +16,7 @@ if ($usuario && password_verify($password, $usuario['password'])) {
     session_write_close();
     
     header("Location: principal.php");
-    exit(); /
+    exit();
 } else {
     echo '
         <script>
