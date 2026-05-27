@@ -5,26 +5,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const userNameTop = document.getElementById("userNameTop");
     const welcomeMessage = document.getElementById("welcomeMessage");
     const btnLogout = document.getElementById("btnLogout");
-    const whatsappLink = document.getElementById("whatsappLink");
-
-    const tuNumeroCelular = "51934501329"; 
-    const mensajeTexto = encodeURIComponent("¡Hola, MR. Firulays! Necesito hacer una consulta sobre mi cita.");
-    if (whatsappLink) {
-        whatsappLink.href = `https://wa.me/${tuNumeroCelular}?text=${mensajeTexto}`;
-    }
 
     if (window.auth) {
         onAuthStateChanged(window.auth, (user) => {
             if (user) {
                 const displayName = user.displayName || user.email.split('@')[0];
                 
-                userNameTop.textContent = displayName;
-                welcomeMessage.textContent = `Bienvenido al panel de citas, ${displayName}`;
+                // 1. Mostrar nombre
+                if (userNameTop) userNameTop.innerHTML = `${displayName} <i class="fas fa-chevron-down"></i>`;
+                if (welcomeMessage) welcomeMessage.textContent = `Bienvenido al panel de citas, ${displayName}`;
 
-                if (user.photoURL) {
-                    userAvatar.innerHTML = `<img src="${user.photoURL}" alt="Foto de ${displayName}">`;
-                } else {
-                    userAvatar.innerHTML = `<i class="fas fa-user"></i>`;
+                // 2. Lógica de la Foto (Google vs Correo)
+                if (userAvatar) {
+                    if (user.photoURL) {
+                        // Si entró con Google, ponemos su foto
+                        userAvatar.innerHTML = `<img src="${user.photoURL}" alt="Foto" style="width:100%; height:100%; object-fit:cover;">`;
+                    } else {
+                        // Si entró con correo, dejamos el icono de la persona
+                        userAvatar.innerHTML = `<i class="fas fa-user"></i>`;
+                    }
                 }
             } else {
                 window.location.href = "index.html";
@@ -34,14 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnLogout) {
         btnLogout.onclick = async () => {
-            if (window.auth) {
-                try {
-                    await signOut(window.auth);
-                    window.location.href = "index.htm";
-                } catch (error) {
-                    console.error("Error al cerrar sesión:", error);
-                    window.location.href = "index.html";
-                }
+            try {
+                await signOut(window.auth);
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error("Error:", error);
             }
         };
     }
