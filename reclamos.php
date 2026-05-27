@@ -23,11 +23,17 @@ $correoUsuario = $_SESSION['usuario'];
         <nav class="navbar-panel">
             <div class="logo">
                 <i class="fas fa-paw logo-icon"></i>
-                <div class="logo-text"><span>MR.Firulays</span><small>Clínica Veterinaria</small></div>
+                <div class="logo-text">
+                    <span>MR.Firulays</span>
+                    <small class="sub-logo">Clínica Veterinaria</small>
+                </div>
             </div>
+
             <ul class="panel-tabs">
-                <li class="tab-item"><a href="principal.php">MIS CITAS</a></li>
-                <li class="tab-item active"><a href="reclamos.php">RECLAMOS/QUEJA</a></li>
+                <li class="tab-item"><a href="principal.php"><i class="fas fa-calendar-alt"></i> MIS CITAS</a></li>
+                <li class="tab-item"><a href="#"><i class="fas fa-dog"></i> MIS MASCOTAS</a></li>
+                <li class="tab-item"><a href="#"><i class="fas fa-credit-card"></i> PAGOS</a></li>
+                <li class="tab-item active"><a href="reclamos.php"><i class="fas fa-comment-dots"></i> RECLAMOS/QUEJA</a></li>
             </ul>
             <div class="user-profile-menu">
                 <span><?php echo $nombreUsuario; ?></span>
