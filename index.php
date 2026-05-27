@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,12 +23,12 @@
             </div>
             
             <div class="nav-right">
-<ul class="nav-links">
-    <li><a href="sobrenosotros.html" class="nav-link-item">Sobre nosotros</a></li>
-    <li><a href="staff.html" class="nav-link-item">Staff</a></li>
-    <li><a href="servicios.html" class="nav-link-item">Servicios</a></li>
-    <li><a href="consejocomunidad.php" class="nav-link-item">Consejos/Comunidad</a></li>
-</ul>
+                <ul class="nav-links">
+                    <li><a href="sobrenosotros.html" class="nav-link-item">Sobre nosotros</a></li>
+                    <li><a href="staff.html" class="nav-link-item">Staff</a></li>
+                    <li><a href="servicios.html" class="nav-link-item">Servicios</a></li>
+                    <li><a href="consejocomunidad.php" class="nav-link-item">Consejos/Comunidad</a></li>
+                </ul>
                 <button class="btn-login" id="openLogin">
                     <i class="fas fa-user-circle"></i> Iniciar sesión
                 </button>
@@ -63,27 +66,20 @@
             <h2>Iniciar sesión</h2>
             <p class="subtitle">Veterinaria MR. FIRULAYS</p>
 
-            <form id="loginForm">
+            <form action="login_proceso.php" method="POST">
                 <div class="input-group">
                     <label>Correo electrónico</label>
-                    <input type="email" placeholder="ejemplo@correo.com" required>
+                    <input type="email" name="correo" placeholder="ejemplo@correo.com" required>
                 </div>
                 <div class="input-group">
                     <label>Contraseña</label>
                     <div class="password-container">
-                        <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
+                        <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" required>
                         <i class="fas fa-eye toggle-icon" id="togglePassword"></i>
                     </div>
                 </div>
-                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
                 <button type="submit" class="btn-submit">Entrar</button>
             </form>
-
-            <div class="divider"><span>o continúa con</span></div>
-            <button class="btn-google" type="button" id="btnGoogle">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
-                <span>Google</span>
-            </button>
         </div>
     </div>
 
@@ -93,27 +89,27 @@
             <h2>Registrarse</h2>
             <p class="subtitle">Veterinaria MR. FIRULAYS</p>
 
-            <form id="registerForm">
+            <form action="registro_proceso.php" method="POST">
                 <div class="input-group">
                     <label><i class="fas fa-user"></i> Nombre completo</label>
-                    <input type="text" placeholder="Ingresa tu nombre completo" required>
+                    <input type="text" name="nombre" placeholder="Ingresa tu nombre completo" required>
                 </div>
                 <div class="input-group">
                     <label><i class="fas fa-id-card"></i> DNI</label>
-                    <input type="text" placeholder="Ingresa tu DNI" required>
+                    <input type="text" name="dni" placeholder="Ingresa tu DNI" required>
                 </div>
                 <div class="input-group">
-                    <label><i class="fas fa-phone"></i> Teléfono de contacto</label>
-                    <input type="tel" placeholder="Ingresa tu número" required>
+                    <label><i class="fas fa-phone"></i> Teléfono</label>
+                    <input type="tel" name="telefono" placeholder="Ingresa tu número" required>
                 </div>
                 <div class="input-group">
                     <label><i class="fas fa-envelope"></i> Correo electrónico</label>
-                    <input type="email" placeholder="ejemplo@correo.com" required>
+                    <input type="email" name="correo" placeholder="ejemplo@correo.com" required>
                 </div>
                 <div class="input-group">
                     <label><i class="fas fa-lock"></i> Contraseña</label>
                     <div class="password-container">
-                        <input type="password" id="regPassword" placeholder="Crea una contraseña" required>
+                        <input type="password" name="password" id="regPassword" placeholder="Crea una contraseña" required>
                         <i class="fas fa-eye toggle-icon" id="toggleRegPassword"></i>
                     </div>
                 </div>
@@ -126,8 +122,7 @@
         </div>
     </div>
 
-</div>
-    </div> <footer class="main-footer">
+    <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-group">
                 <span class="footer-label">Búscanos en nuestras redes:</span>
@@ -136,44 +131,55 @@
                     <a href="https://www.facebook.com/share/1Dugv77nDb/"><i class="fab fa-facebook"></i> Facebook</a>
                 </div>
             </div>
-
             <div class="footer-group">
                 <span class="footer-label">Mándanos un mensaje:</span>
-                <a href="https://wa.me/51923878253" target="_blank" class="footer-link">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
+                <a href="https://wa.me/51923878253" target="_blank" class="footer-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
-
             <div class="footer-group">
                 <span class="footer-label">Correo:</span>
-                <a href="mailto:mrfirulaysxs@gmail.com" class="footer-link">
-                    <i class="far fa-envelope"></i> mrfirulaysxs@gmail.com
-                </a>
+                <a href="mailto:mrfirulaysxs@gmail.com" class="footer-link"><i class="far fa-envelope"></i> mrfirulaysxs@gmail.com</a>
             </div>
         </div>
     </footer>
 
-    
-        
+    <script>
+        const loginModal = document.getElementById("loginModal");
+        const regModal = document.getElementById("registerModal");
 
-    
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+        // Abrir modales
+        document.getElementById("openLogin").onclick = () => { loginModal.style.display = "flex"; };
+        document.getElementById("openRegisterHero2").onclick = () => { regModal.style.display = "flex"; };
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyDCm LdcegKDBdJPw_OV4aQIQ3TBhli7nzQ",
-        authDomain: "veterinaria-mr-firulays.firebaseapp.com",
-        projectId: "veterinaria-mr-firulays",
-        storageBucket: "veterinaria-mr-firulays.firebasestorage.app",
-        messagingSenderId: "913958724869",
-        appId: "1:913958724869:web:9349306cfa0d444e55436c"
-    };
+        // Cerrar modales
+        document.querySelectorAll('.close-modal').forEach(btn => {
+            btn.onclick = () => {
+                loginModal.style.display = "none";
+                regModal.style.display = "none";
+            };
+        });
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    window.auth = auth;
-</script>
-<script type="module" src="js/script.js"></script>
+        // Cambiar de Registro a Login
+        document.getElementById("toLogin").onclick = (e) => {
+            e.preventDefault();
+            regModal.style.display = "none";
+            loginModal.style.display = "flex";
+        };
+
+        // Ver/Ocultar contraseña
+        const setupEye = (iconId, inputId) => {
+            const icon = document.getElementById(iconId);
+            const input = document.getElementById(inputId);
+            if (icon && input) {
+                icon.onclick = () => {
+                    const isPassword = input.type === "password";
+                    input.type = isPassword ? "text" : "password";
+                    icon.classList.toggle("fa-eye");
+                    icon.classList.toggle("fa-eye-slash");
+                };
+            }
+        };
+        setupEye("togglePassword", "password");
+        setupEye("toggleRegPassword", "regPassword");
+    </script>
 </body>
 </html>

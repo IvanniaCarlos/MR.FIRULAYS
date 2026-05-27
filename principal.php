@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    echo "
+    <script>
+        alert('Acceso denegado. Por favor, inicia sesión para entrar al panel.');
+        window.location.href = 'index.php';
+    </script>
+    ";
+    exit();
+}
+
+$nombreUsuario = isset($_SESSION['nombre_usuario']) ? $_SESSION['nombre_usuario'] : "Usuario";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -30,8 +45,9 @@
                 <div class="avatar-circle" id="userAvatar">
                     <i class="fas fa-user"></i>
                 </div>
-                <span class="user-name-text" id="userNameTop">Cargando...</span>
-                <button id="btnLogout" class="btn-small-logout" title="Cerrar Sesión">
+                <span class="user-name-text" id="userNameTop"><?php echo $nombreUsuario; ?></span>
+                
+                <button id="btnLogout" class="btn-small-logout" title="Cerrar Sesión" onclick="window.location.href='logout.php'">
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
             </div>
@@ -42,7 +58,7 @@
         <section class="welcome-container">
             <div class="welcome-banner">
                 <i class="fas fa-calendar-check banner-icon"></i>
-                <h2 id="welcomeMessage">Bienvenido al panel de citas</h2>
+                <h2 id="welcomeMessage">¡Hola, <?php echo $nombreUsuario; ?>! Bienvenido a tu panel.</h2>
             </div>
             <button class="btn-add-appointment" onclick="window.location.href='agendar.php'">
             <i class="fas fa-plus"></i> Agendar nueva cita
@@ -73,29 +89,12 @@
                         <button class="btn-reprogram">Reprogramar</button>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
     </main>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-        import { getAuth } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDCm LdcegKDBdJPw_OV4aQIQ3TBhli7nzQ",
-            authDomain: "veterinaria-mr-firulays.firebaseapp.com",
-            projectId: "veterinaria-mr-firulays",
-            storageBucket: "veterinaria-mr-firulays.firebasestorage.app",
-            messagingSenderId: "913958724869",
-            appId: "1:913958724869:web:9349306cfa0d444e55436c"
-        };
-
-        // Inicializamos Firebase y lo exponemos globalmente para panel.js
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        window.auth = auth;
+    <script>
+        console.log("Sesión activa de: <?php echo $_SESSION['usuario']; ?>");
     </script>
-
-    <script type="module" src="js/panel.js"></script>
 </body>
 </html>
