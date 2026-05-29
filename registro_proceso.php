@@ -5,8 +5,6 @@ session_start();
 if (!isset($_SESSION['usuario'])) { 
     exit("Acceso no autorizado"); 
 }
-
-// Iniciamos el buffer para evitar que espacios en blanco rompan la respuesta
 ob_start();
 
 $nombre    = $_POST['nombre_completo'];
@@ -28,17 +26,14 @@ if (isset($_FILES['evidencia']) && $_FILES['evidencia']['error'] == 0) {
     }
 }
 
-// Consulta SQL hacia la tabla 'reclamos'
 $sql = "INSERT INTO reclamos (nombre_completo, dni, telefono, correo_electronico, tipo_incidencia, descripcion, evidencia) 
         VALUES ('$nombre', '$dni', '$telefono', '$correo', '$tipo', '$desc', '$nombreArchivoDb')";
 
-// Limpiamos cualquier salida previa del buffer antes de responder
 ob_clean();
 
 if (mysqli_query($conexion, $sql)) {
     echo "success";
 } else {
-    // Si falla la inserción, mandamos el error exacto de MySQL para identificar la columna incorrecta
     echo "Detalle del error: " . mysqli_error($conexion);
 }
 

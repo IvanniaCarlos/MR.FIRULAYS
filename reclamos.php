@@ -126,7 +126,7 @@ $correoUsuario = $_SESSION['usuario'];
                 Swal.fire({ title: '¡Éxito!', text: 'Reclamo enviado correctamente', icon: 'success', confirmButtonColor: '#004aad' })
                 .then(() => location.reload());
             } else {
-                // Ahora te mostrará el error real de la base de datos aquí mismo
+                
                 Swal.fire('Error en el Sistema', data, 'error');
             }
         })
