@@ -60,6 +60,7 @@ session_start();
         </section>
     </main>
 
+    <!-- MODAL DE INICIO DE SESIÓN -->
     <div id="loginModal" class="modal-overlay">
         <div class="login-box">
             <span class="close-modal" id="closeLogin">&times;</span>
@@ -83,6 +84,7 @@ session_start();
         </div>
     </div>
 
+    <!-- MODAL DE REGISTRO OPTIMIZADO -->
     <div id="registerModal" class="modal-overlay">
         <div class="login-box">
             <span class="close-modal" id="closeRegister">&times;</span>
@@ -94,14 +96,33 @@ session_start();
                     <label><i class="fas fa-user"></i> Nombre completo</label>
                     <input type="text" name="nombre" placeholder="Ingresa tu nombre completo" required>
                 </div>
+                
+                <!-- CASILLA DNI CON VALIDACIÓN DE 8 DÍGITOS EXÁCTOS -->
                 <div class="input-group">
                     <label><i class="fas fa-id-card"></i> DNI</label>
-                    <input type="text" name="dni" placeholder="Ingresa tu DNI" required>
+                    <input type="text" 
+                           name="dni" 
+                           placeholder="Ingresa los 8 dígitos" 
+                           maxlength="8" 
+                           minlength="8" 
+                           pattern="[0-9]+" 
+                           title="El DNI debe contener exactamente 8 números" 
+                           required>
                 </div>
+                
+                <!-- CASILLA TELÉFONO CON VALIDACIÓN DE 9 DÍGITOS EXÁCTOS -->
                 <div class="input-group">
                     <label><i class="fas fa-phone"></i> Teléfono</label>
-                    <input type="tel" name="telefono" placeholder="Ingresa tu número" required>
+                    <input type="text" 
+                           name="telefono" 
+                           placeholder="Ingresa los 9 dígitos" 
+                           maxlength="9" 
+                           minlength="9" 
+                           pattern="[0-9]+" 
+                           title="El número de teléfono debe contener exactamente 9 números" 
+                           required>
                 </div>
+                
                 <div class="input-group">
                     <label><i class="fas fa-envelope"></i> Correo electrónico</label>
                     <input type="email" name="correo" placeholder="ejemplo@correo.com" required>
