@@ -28,6 +28,7 @@ session_start();
                     <li><a href="staff.html" class="nav-link-item">Staff</a></li>
                     <li><a href="servicios.html" class="nav-link-item">Servicios</a></li>
                     <li><a href="consejocomunidad.php" class="nav-link-item">Consejos/Comunidad</a></li>
+                    <li><a href="dashboard.php" class="nav-link-item">Dashboard</a></li>
                 </ul>
                 <button class="btn-login" id="openLogin">
                     <i class="fas fa-user-circle"></i> Iniciar sesión

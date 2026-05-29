@@ -92,11 +92,12 @@ $resultado = mysqli_query($conexion, $sql);
     <nav class="navbar">
         <div style="font-family: 'Montserrat'; font-weight: 800; color: var(--azul); font-size: 22px;"><i class="fas fa-paw"></i> MR.Firulays</div>
         <div style="display: flex; gap: 25px; font-weight: 600;">
-            <a href="index.html" style="text-decoration:none; color:#666;">Inicio</a>
+            <a href="index.php" style="text-decoration:none; color:#666;">Inicio</a>
             <a href="sobrenosotros.html" style="text-decoration:none; color:#666;">Sobre Nosotros</a>
             <a href="staff.html" style="text-decoration:none; color:#666;">Staff</a>
             <a href="servicios.html" style="text-decoration:none; color:#666;">Servicios</a>
             <a href="#" style="text-decoration:none; color:var(--azul); border-bottom: 2px solid var(--azul);">Consejos/Comunidad</a>
+            <a href="dashboard.php" style="text-decoration:none; color:#666;">Dashboard</a>
         </div>
     </nav>
     <main class="comunidad-container">
